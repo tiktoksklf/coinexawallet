@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coinexa</title>
-<link rel="apple-touch-icon" href="https://static.vecteezy.com/system/resources/previews/003/338/077/large_2x/blue-gradient-logo-c-alphabet-letter-design-icon-for-company-vector.jpg">
+
+<!-- PWA Fullscreen -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Coinexa">
+<link rel="apple-touch-icon" href="icon-192.png">
+
 <style>
 body { font-family: 'Segoe UI', sans-serif; margin:0; background:#f2f5f7; color:#333; transition: .3s; }
 body.dark { background:#111; color:#eee; }
@@ -36,8 +43,6 @@ body.dark .transactions h3 { color:#50e3c2; }
   scrollbar-color: #4a90e2 #f2f5f7;
 }
 body.dark .transactions ul { scrollbar-color: #50e3c2 #111; }
-
-/* Chrome, Edge, Safari */
 .transactions ul::-webkit-scrollbar { width: 8px; }
 .transactions ul::-webkit-scrollbar-track { background: #f2f5f7; border-radius:10px; }
 body.dark .transactions ul::-webkit-scrollbar-track { background:#111; }
@@ -59,7 +64,6 @@ body.dark .modal-content button { background:#50e3c2; color:#111; }
 .modal-close { position:absolute; top:15px; right:20px; cursor:pointer; font-size:20px; color:#333;}
 body.dark .modal-close { color:#eee; }
 
-/* Notification */
 .notification { display:none; position:fixed; bottom:20px; right:20px; background:#4a90e2; color:#fff; padding:15px 25px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,.3); z-index:1000; font-weight:bold; animation:slideIn 0.5s; }
 body.dark .notification { background:#50e3c2; color:#111; }
 @keyframes slideIn { 0% {opacity:0; transform:translateX(100%);} 100% {opacity:1; transform:translateX(0);} }
@@ -140,7 +144,7 @@ body.dark .notification { background:#50e3c2; color:#111; }
 </div>
 
 <script>
-// Local storage
+// Local storage & setup
 const BALANCE_KEY = "coinexa_balance";
 const TRANSACTIONS_KEY = "coinexa_transactions";
 let balances = JSON.parse(localStorage.getItem(BALANCE_KEY)) || { BTC:1.2, ETH:5, SOL:100, LTC:50 };
